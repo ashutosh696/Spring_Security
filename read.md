@@ -9,10 +9,9 @@ curl --request POST \
 }'
 
 ---------------------------------------------------------------------
-Access secure API:
 curl --request GET \
---url 'http://localhost:8088/api/secure/hello?=&=' \
---header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc1NDEwOTgxOCwiZXhwIjoxNzU0MTk2MjE4fQ.agEQd3cgIfQXpf0K8PCRanvSiTs1klCdLbIb4fqro0s' \
+--url http://localhost:8088/api/secure/hello \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc1NDExMjI5OSwiZXhwIjoxNzU0MTk4Njk5fQ.hJbRuxt21qCxdce5N0wQbUV5qvUDGIkH-pBse1RgclA' \
 --header 'Content-Type: application/json' \
 --header 'User-Agent: insomnia/11.4.0' \
 --data ' '
