@@ -13,7 +13,7 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    private final String jwtSecret = "bWluZGxvYXRoYXBwLXNlY3VyZS1yYW5kb20ta2V5LWxvbmc="; // move to config in real projects
+    private final String jwtSecret = "bWluZGxvYXRoYXBwLXNlY3VyZS1yYW5kb20ta2V5LWxvbmc="; // Base64-encoded 256-bit key
     private final long jwtExpirationMs = 86400000;
 
     public String generateToken(String username) {
@@ -30,10 +30,9 @@ public class JwtUtil {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
-
     public String extractUsername(String token) {
         return Jwts.parserBuilder()
-                .setSigningKey(Keys.hmacShaKeyFor(jwtSecret.getBytes()))
+                .setSigningKey(getSigningKey())
                 .build()
                 .parseClaimsJws(token)
                 .getBody()
@@ -43,7 +42,7 @@ public class JwtUtil {
     public boolean validateToken(String token) {
         try {
             Jwts.parserBuilder()
-                    .setSigningKey(Keys.hmacShaKeyFor(jwtSecret.getBytes()))
+                    .setSigningKey(getSigningKey())
                     .build()
                     .parseClaimsJws(token);
             return true;
